@@ -1,3 +1,4 @@
+
 import cv2
 
 #loading face cascade
@@ -5,7 +6,7 @@ face_cascade = cv2.CascadeClassifier('haar_face.xml')
 #video
 video = cv2.VideoCapture('video.mp4')
 #Font
-Font = cv2.FONT_HERSHEY_SIMPLEX 
+Font = cv2.FONT_HERSHEY_COMPLEX
 #saving purposes
 frame_width = int(video.get(3))
 frame_height = int(video.get(4))
@@ -23,9 +24,10 @@ while True:
     # read faces
     faces = face_cascade.detectMultiScale(gray, 1.1, 4)
     #draw rectangle and text
+    face_text = 'Face detected'
     for (x, y, w, h) in faces:  
-        cv2.rectangle(vid, (x, y), (x+w, y+h), (0, 255, 0), 1)
-        cv2.putText(vid, 'Face', (x,y-10), Font, 0.5, (255,0,0), 2)
+        cv2.rectangle(vid, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        cv2.putText(vid, face_text, (x,y), Font, 0.6, (255,0,0), 1)
     # showing the video frame
     cv2.imshow('Video', vid)
     #takes result of video and writes to FaceDetect.avi
@@ -34,3 +36,4 @@ while True:
     cv2.waitKey(30)
 
 result.release()
+print(result.release())
